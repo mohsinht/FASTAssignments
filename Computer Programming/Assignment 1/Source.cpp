@@ -164,31 +164,31 @@ void main()
 }
 
 int* shrink(int* arr, int& k, int i) {
-	k = k - 1;
+	k = k - 1; //size main se 1 minus kia
 	int j = 0;
-	int* arr2 = new int[k];
+	int* arr2 = new int[k]; //nyi array bnayi
 	for (int q = 0; q < k+1; q++)
 	{
 		if (arr[q] != arr[i]) {
-			arr2[j] = arr[q];
+			arr2[j] = arr[q]; //usmay sari purani values copy kee, siwaye 'i' kay. i delete krna hai. 
 			j++;
 		}
 	}
-	delete[] arr;
+	delete[] arr; //pichli array urha di
 	return arr2;
 }
 
 int* extend(int* arr, int& k, int n) {
 	int q=0, j=0;
-	int max, sum;
+	int max, sum; //max iss liye count kr rha hun takay values repeat na ho sakay. Jaisay 1-10 tak ka size hai aur 5 remove hua hai, to next time 11 add hoga.   
 	srand(time(0));
-	q = rand() % (5) + 1;
+	q = rand() % (5) + 1; //extension ka size
 	j = rand() % k;
-	k = k + q;
-	int* arr2 = new int[k];
-	for (int t = 0; t < k - q; t++)
+	k = k + q; //size brha dia
+	int* arr2 = new int[k]; //jitna size extend hua hai utnay ki array bnayi
+	for (int t = 0; t < k - q; t++)//k-q iss liye takay purani values copy kr li jayen pehlay
 	{
-		sum = 0;
+		sum = 0; //sum ka mqsad wo jagah find krna hai jahan insertion krni hai
 		for (int r = 0; r < k - q; r++)
 		{
 			if (arr[t] >= arr[r])
@@ -208,19 +208,19 @@ int* extend(int* arr, int& k, int n) {
 
 	}
 	int u = 0;
-	for (int i = 0; i < k; i++)
+	for (int i = 0; i < k; i++)//yahan se nyi array bnna start hogi
 	{
 		if (i == j)
 		{
-			for (int y = 1; y < q+1; y++)
+			for (int y = 1; y < q+1; y++)//nyi array main extended locations pr values save krwa rha hun. J random location hai jahan extended values add hongi
 			{
 				arr2[i] = max + y;
 				i++;
 			}
 		}
-		arr2[i] = arr[u];
+		arr2[i] = arr[u]; //warna simple copy krni hain values
 		u++;
 	}
-	delete[] arr;
+	delete[] arr; 
 	return arr2;
 }
